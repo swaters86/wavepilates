@@ -36,7 +36,7 @@
             </div>   
                 <br class="clearall" />
             <div class="ftr"> 
-                <ASPNetAudio:Audio ID="Audio1" runat="server" Volume="100" AudioURL="http://www.wavepilates.com/Track%201.mp3" AutoPlay="True" Loop="False" Streaming="True" ></ASPNetAudio:Audio>
+                <ASPNetAudio:Audio ID="Audio1" runat="server" Volume="100" AudioURL="https://wavepilates.azurewebsites.net/Track%201.mp3" AutoPlay="True" Loop="False" Streaming="True" ></ASPNetAudio:Audio>
                 <div class="MediaPlayer">
                      <div class="rewind" type="button" onClick='ASPNetMedia.Audio("Audio1").FastReverse()'  style="display:none;"></div>
                      <div class="play" type="button" onClick='ASPNetMedia.Audio("Audio1").PlayMedia ()'></div>
