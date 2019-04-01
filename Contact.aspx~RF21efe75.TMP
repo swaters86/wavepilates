@@ -1,0 +1,169 @@
+﻿<%@ Page Title="Contact Us" Language="VB" MasterPageFile="~/Masters/MasterPage.master" AutoEventWireup="false" CodeFile="Contact.aspx.vb" Inherits="Contact" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+ <script type="text/javascript">
+         switch (location.host) {
+                case "www.wavepilates.com":
+                    document.write("<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAMNhBtNcp6ArHsOGvRGhDDBSkNBl96e5_Z9gXUStY3gK-E9htBhRHqYx8gbb2WIg5JRaCNVyyTyGICQ' type='text/javascript'><\/script>");
+                    break;
+                case "wavepilates.com":
+                    document.write("<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAMNhBtNcp6ArHsOGvRGhDDBSGtp44AaIRVTwM8DaJOG5AIPLGjhSzUmgcdnBMtCeqE5GQ4BClrUhIYA' type='text/javascript'><\/script>");
+                    break;
+                case "websites.rapidts.com":
+                    document.write("<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAMNhBtNcp6ArHsOGvRGhDDBTXU2UrDu_NBsbf1E3a2_nRdV8hwRSblGNJxGex2Frb3SOtMNM2L2q0CA' type='text/javascript'><\/script>");
+                    break;
+            }
+     </script>
+ <script type="text/javascript">
+        var map;
+        var gdir;
+        var geocoder = null;
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_canvas"));
+                gdir = new GDirections(map, document.getElementById("directions"));
+                map.setCenter(new GLatLng(27.9397, -82.4931), 13);
+//                 map.openInfoWindow(map.getCenter(), document.innerHTML = "<style type='text/css'>strong{display:block; font-family:arial, verdana;}</style><strong>We're located at:</strong><br/><br/>620 S. MacDill Ave., Suite A<br/><br/>Tampa, Fl 33609");
+
+//                gdir = new GDirections(map, document.getElementById("directions"));
+//                GEvent.addListener(gdir, "load", onGDirectionsLoad);
+//                GEvent.addListener(gdir, "error", handleErrors);
+
+//                setDirections(fromAddress, setCenter(), "en_US");
+                //                map.setUIToDefault();
+
+                var myIcon = new GIcon(G_DEFAULT_ICON);
+                myIcon.image = "http://websites.rapidts.com/wvplts2/App_Themes/Wave1/imgs/MapIcon.png";
+                myIcon.iconSize = new GSize(82, 71); 
+                myIcon.iconAnchor = new GPoint(82, 70);
+                myIcon.infoWIndowAnchor = new GPoint(10, 14);
+                myIcon.shadowSize = new GSize(0, 0);
+                var markerOptions = { icon: myIcon };
+                var marker = new GMarker(map.getCenter(), markerOptions);
+                     GEvent.addListener(marker, "click", function () {
+	                          marker.openInfoWindowHtml("<style type='text/css'>strong{display:block; font-family:arial, verdana;}</style><strong>We're located at:</strong><br/><br/>620 S. MacDill Ave., Suite A<br/><br/>Tampa, Fl 33609");
+                     });
+                    map.addOverlay(marker);
+                }
+                var mapControl = new GMapTypeControl();
+                map.addControl(mapControl); 
+                map.addControl(new GSmallZoomControl()); 
+            }
+ </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <table border="0" cellpadding="10" cellspacing="0" width="500" 
+        style="margin:0 auto; padding-left:10px; text-align:left;">
+       <tr>
+       <td colspan="3"><h1>Contact Us</h1></td>
+       </tr>
+       <tr>
+           <td colspan="3"><sup class="attention">*</sup> <span style="font-size:9pt">required field</span></td>
+       </tr>
+
+       <tr valign="bottom">
+           <td></td>
+           <td><asp:RequiredFieldValidator ID="rqfvName" CssClass="fix" runat="server" ControlToValidate="txtName" ErrorMessage="RequiredFieldValidator"><span class="attention"> Name Required.</span></asp:RequiredFieldValidator></td>
+       </tr>
+       <tr>
+           <td class="style2"><asp:Label ID="lblName" runat="server" Text="Label">First &amp; Last Name:<sup class="attention">*</sup></asp:Label></td>
+           <td class="style3"><asp:TextBox CssClass="Field" ID="txtName" runat="server" Width="267px"></asp:TextBox></td>
+       </tr>
+       <tr valign="bottom">
+           <td><asp:RegularExpressionValidator ID="revEmail" runat="server" 
+                   ControlToValidate="txtEmail" ErrorMessage="RegularExpressionValidator" 
+                   ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"><span class="attention">Check Email Format.</span></asp:RegularExpressionValidator></td>
+           <td><asp:RequiredFieldValidator CssClass="fix" ID="rqfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="RequiredFieldValidator"><span class="attention"> Email Required.</span></asp:RequiredFieldValidator></td>
+       </tr>
+       <tr>
+           <td class="style2"><asp:Label ID="lblEmail" runat="server" Text="Label">Email:<sup class="attention">*</sup></asp:Label></td>
+           <td class="style3"><asp:TextBox CssClass="Field" ID="txtEmail" runat="server" Width="267px"></asp:TextBox></td>
+       </tr>
+       <tr>
+           <td>
+                &nbsp;
+           </td>
+           <td>
+                &nbsp;
+           </td>
+       </tr>
+       <tr>
+           <td class="style2"><asp:Label ID="lblPhone" runat="server" Text="Label">Primary Phone:</asp:Label></td>
+           <td class="style3"><asp:TextBox CssClass="Field" ID="txtPhone" runat="server" Width="267px"></asp:TextBox></td>
+       </tr>
+       <tr>
+           <td>
+                &nbsp;
+           </td>
+           <td>
+                &nbsp;
+           </td>
+       </tr>                       <tr>
+           <td class="style2"><asp:Label ID="lblAltPhone" runat="server" Text="Label">Alternate Phone:</asp:Label></td>
+           <td class="style3"><asp:TextBox CssClass="Field" ID="txtAltPhone" runat="server" Width="267px"></asp:TextBox></td>
+       </tr>
+       <tr>
+           <td>
+                &nbsp;
+           </td>
+           <td>
+                &nbsp;
+           </td>
+       </tr>
+       <tr>
+           <td valign="top" class="style2"><asp:Label ID="lblInterested" runat="server" Text="Label">I'm Interested in these rates:</asp:Label></td>
+           <td class="style3">
+              <asp:CheckBoxList ID="chckboxInterest" runat="server" Width="210">
+               <asp:ListItem>The Intro Special </asp:ListItem>
+               <asp:ListItem>Private Sessions </asp:ListItem>
+               <asp:ListItem>Duet Session </asp:ListItem>
+               <asp:ListItem>30-Minute Private Session </asp:ListItem>
+               <asp:ListItem>Circuit Class</asp:ListItem>
+               <asp:ListItem>Reformer Class</asp:ListItem>
+               <asp:ListItem>Ped-a-lates</asp:ListItem>
+               </asp:CheckBoxList>
+           </td>
+          
+       </tr>
+       <tr>
+           <td>
+                &nbsp;
+           </td>
+           <td>
+                &nbsp;
+           </td>
+       </tr>
+       <tr>
+           <td valign="top" style="vertical-align:top" ="style2"><asp:Label ID="lblQuestions" runat="server" Text="Label">Have any Questions or Comments?</asp:Label></td>
+           <td class="style3"><asp:TextBox CssClass="Field" Width="277px" Height="116px" ID="txtQuestions" TextMode="MultiLine" runat="server"></asp:TextBox></td>
+       </tr>
+       <tr>
+           <td>
+                &nbsp;
+           </td>
+           <td>
+                &nbsp;
+           </td>
+       </tr>                       
+       <tr>
+           <td class="style3">
+                <br />
+               <asp:Button ID="btnSubmit" runat="server" Height="26px" style="float:right" Text="Submit" Width="74px" />
+           </td>
+           <td class="style6">
+               <asp:Label ID="lblMessage" runat="server"></asp:Label>
+           </td>
+       </tr>
+    </table>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+      <img src="App_Themes/Wave1/imgs/CallNow.png" alt="" /> 
+     
+     <div class="map" style="position:relative; z-index:99px; top:-10px"> 
+        <div id="map_canvas" style="width: 250px; height: 175px"></div>
+     </div>
+     
+   
+</asp:Content>
+
+
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server"></asp:Content>

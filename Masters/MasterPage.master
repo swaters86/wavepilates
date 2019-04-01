@@ -1,0 +1,125 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="Masters_MasterPage" %>
+<%@ Register Assembly="ASPNetAudio.NET3" Namespace="ASPNetAudio" TagPrefix="ASPNetAudio" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">--%>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="shortcut icon" href="../App_Themes/Wave1/imgs/favicon.ico" type="image/x-icon" />
+    <meta name="google-site-verification" content="l9nSpque0K3krSBLxQtxzS3OhRVGliwLO_stgFOPKUQ" />
+</head>
+<body id="mBody" runat="server">
+    <form id="form1" runat="server" >
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="wrapper">
+            <div class="hdr">
+                <object type="application/x-shockwave-flash" data="WaveIntro.swf"  width="980" height="495">
+                    <param name="movie" value="WaveIntro.swf" />
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#666153" />
+                </object>
+            </div>     
+            <div class="mc1">
+                <div class="col1">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+                <div class="col2">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server"> </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="mc2"> 
+                <asp:ContentPlaceHolder id="ContentPlaceHolder3" runat="server"> </asp:ContentPlaceHolder>
+            </div>   
+                <br class="clearall" />
+            <div class="ftr"> 
+                <ASPNetAudio:Audio ID="Audio1" runat="server" Volume="100" AudioURL="http://www.wavepilates.com/Track%201.mp3" AutoPlay="True" Loop="False" Streaming="True" ></ASPNetAudio:Audio>
+                <div class="MediaPlayer">
+                     <div class="rewind" type="button" onClick='ASPNetMedia.Audio("Audio1").FastReverse()'  style="display:none;"></div>
+                     <div class="play" type="button" onClick='ASPNetMedia.Audio("Audio1").PlayMedia ()'></div>
+                     <div class="pause" type="button"  onClick='ASPNetMedia.Audio("Audio1").PauseMedia ()'></div>
+                     <div class="stop" type="button"  onClick='ASPNetMedia.Audio("Audio1").StopMedia ()'  style="display:none;"></div>
+                     <div class="forward" type="button"   onClick='ASPNetMedia.Audio("Audio1").FastForward()' style="display:none;"></div>
+                </div>
+                <div class="ftrLinks"> 
+                    <ul>
+                        <li><a class="fb"  href="http://www.facebook.com/WavePilates" target="_blank" title="Friend Us On Facebook"><img src="App_Themes/Wave1/imgs/fb.png" /></a></li>
+                        <li><a class="twitter"   href="http://twitter.com/WavePilates" target="_blank" title="Follow Us On Twitter"><img src="App_Themes/Wave1/imgs/twitter.png" /></a></li>
+                        <li><a class="twitter"  href="Affiliates.aspx"title="Visit Our Affiliates"><img src="App_Themes/Wave1/imgs/affiliates.png" /></a></li>
+<%--                        <li><a class="twitter"  href="Sweepstakes.aspx"title="Enter to win"><img src="App_Themes/Wave1/imgs/Sweepstakes.png" /></a></li>--%>
+                    </ul> 
+                        <br class="clearall" />
+                    <p style="margin-left:15px; color:#666153;">
+                        Content &amp; Imagery &copy; 2014 | 620 S. MacDill Ave., Suite A Tampa, Fl 33609<br />
+                        <a style="color:#8A8470" href="http://www.rapidts.com" title="website design" target="_blank" >Website design</a> 
+                        by 
+                        <a href="http://www.rapidts.com" title="website design" target="_blank" style="border: none; color:#cc3333" >RTS</a>
+                    </p>   
+                </div>
+            </div>
+        </div> 
+    </form>
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-12991606-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+  <script type="text/javascript">
+      ASPNetMedia.Audio("Audio1").OnStop = function(object, position) {
+          notify("OnStop");
+      }
+
+      ASPNetMedia.Audio("Audio1").OnPause = function(object, position) {
+          notify("OnPause");
+      }
+
+      ASPNetMedia.Audio("Audio1").OnPlay = function(object, position) {
+          notify("OnPlay");
+      }
+
+      ASPNetMedia.Audio("Audio1").OnFinish = function(object, position) {
+          notify("OnFinish");
+      }
+
+      ASPNetMedia.Audio("Audio1").OnStartBuffer = function(object) {
+          notify("OnStartBuffer");
+      }
+
+
+      ASPNetMedia.Audio("Audio1").OnReady = function(object) {
+          notify("OnReady");
+      }
+
+
+      ASPNetMedia.Audio("Audio1").OnStartSeek = function(object, position) {
+          notify("OnStartSeek");
+      }
+
+
+      ASPNetMedia.Audio("Audio1").OnStopSeek = function(object, position) {
+          notify("OnStopSeek");
+      }
+
+      ASPNetMedia.Audio("Audio1").OnProgress = function(object, position) {
+          //     notify("OnProgress");
+      }
+
+
+      ASPNetMedia.Audio("Audio1").OnSeek = function(object, position) {
+          //      notify("OnSeek");
+      }
+
+      function notify(str) {
+          document.getElementById("notifywindow").innerHTML += str + "<br/>";
+      }            
+                    </script>
+</body>
+</html>
