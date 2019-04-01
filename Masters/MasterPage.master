@@ -17,8 +17,8 @@
         </asp:ScriptManager>
         <div class="wrapper">
             <div class="hdr">
-                <object type="application/x-shockwave-flash" data="WaveIntro.swf"  width="980" height="495">
-                    <param name="movie" value="WaveIntro.swf" />
+                <object type="application/x-shockwave-flash" data="https://wavepilates.azurewebsites.net/waveIntro.swf"  width="980" height="495">
+                    <param name="movie" value="https://wavepilates.azurewebsites.net/waveIntro.swf" />
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#666153" />
                 </object>
